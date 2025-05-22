@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+:root {
+  --black: rgb(1, 2, 53);
+}
+
+h1 {
+  font-weight: 3.5rem;
+  color: rgba(240, 255, 255, 0.914);
+  text-align: center;
+  line-height: 5rem;
+  background-color: var(--black);
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 5rem;
+}
+
+.choice {
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.choice img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.score-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+#score {
+  font-size: 5rem;
+  font-weight: 500;
+}
+
+.user-score > p:last-child,
+.comp-score > p:last-child {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.comp-choice{
+    width: 100px;
+    height: 100px;
+}
+
+.comp-choice img{
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.feedback-container {
+  background-color: var(--black);
+  padding: 0.75rem;
+  white-space: nowrap;
+  color: whitesmoke;
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 1;
+  text-align: center;
+  width: 600px;
+  margin: 3rem auto;
+  border-radius: 12px;
+}
