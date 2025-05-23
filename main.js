@@ -6,9 +6,27 @@ const feedbackContainer = document.querySelector(".feedback-container");
 const feedbackMsg = document.querySelector(".feedback-container > p");
 const compChoiceImg = document.querySelector(".comp-choice img");
 const images = document.querySelectorAll("img");
+const startBtn = document.querySelector(".overlay > button");
+const landingPage = document.querySelector(".landing");
+const rpsUi = document.querySelector(".rps-ui");
+
+let winSound = new Audio("./assets/sounds/cheers.mp3");
+let loseSound = new Audio("./assets/sounds/buzzer-buzzing.mp3");
+let drawSound = new Audio("./assets/sounds/play-again.mp3");
 
 // event listeners
-choicesContainer.addEventListener("click", handleUserChoice);
+
+startBtn.addEventListener("click", () => {
+  choicesContainer.addEventListener("click", handleUserChoice);
+  // overlay.innerHTML = "";
+  startBtn.classList.remove("pulse");
+  startBtn.style.backgroundColor = "var(--black)";
+  startBtn.innerText = "Loading...";
+  setTimeout(() => {
+    landingPage.style.display = "none";
+    rpsUi.style.display = "block";
+  }, 2000);
+});
 
 // initialize
 compChoiceImg.src = "./assets/images/init-image.png";
@@ -52,17 +70,18 @@ function showWinner(userChoice, compChoice, userWin) {
   if (userWin) {
     yourScore++;
     userScore.textContent = yourScore;
+    winSound.play();
     feedbackMsg.textContent = `You won!😄 Your ${userChoice} beats ${compChoice}`;
     feedbackContainer.style.backgroundColor = "#66f542";
   } else {
     cpuScore++;
-
     compScore.textContent = cpuScore;
     const capCompChoiceFrstLetter = compChoice.replace(
       compChoice.charAt(0),
       compChoice.charAt(0).toUpperCase()
     );
     console.log(capCompChoiceFrstLetter);
+    loseSound.play();
     feedbackMsg.textContent = `You lost😫. ${capCompChoiceFrstLetter} beats your ${userChoice}`;
     feedbackContainer.style.backgroundColor = "#ff4747";
   }
@@ -77,6 +96,7 @@ function playGame(userChoice) {
   //   win criteria
   if (userChoice === compChoice) {
     feedbackContainer.classList.remove("pulse");
+    drawSound.play();
     feedbackMsg.textContent = "Draw🤝. Play again";
     feedbackContainer.style.backgroundColor = `var(--black)`;
   } else {
