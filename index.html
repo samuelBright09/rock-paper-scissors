@@ -3,45 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./assets/images/gamepad.png">
     <script src="main.js" defer></script>
     <title>RPS-Game</title>
   </head>
   <body>
-    <h1>RPS Game</h1>
-    <!-- choices -->
-    <div class="choices">
-      <div class="choice">
-        <img src="./assets/images/rock.png" alt="rock" />
-      </div>
-      <div class="choice">
-        <img src="./assets/images/paper.png" alt="paper" />
-      </div>
-      <div class="choice">
-        <img src="./assets/images/scissors.png" alt="scissors" />
+    <!-- landing page -->
+    <div class="landing">
+      <video autoplay muted loop class="vid-bg fade-in ">
+        <source src="./assets/video/rps-vid.mp4" type="video/mp4" />
+      </video>
+
+      <div class="overlay">
+        <h2>Rock✊ Paper🖐️ Scissors✌️</h2>
+        <button class="pulse">Click to start</button>
       </div>
     </div>
 
-    <div class="score-board">
-      <div class="user-score">
-        <p id="score"></p>
-        <p>You</p>
+    <!-- choices -->
+    <section class="rps-ui">
+      <h1>RPS Game</h1>
+      <div class="choices">
+        <div class="choice">
+          <img src="./assets/images/rock.png" alt="rock" />
+        </div>
+        <div class="choice">
+          <img src="./assets/images/paper.png" alt="paper" />
+        </div>
+        <div class="choice">
+          <img src="./assets/images/scissors.png" alt="scissors" />
+        </div>
       </div>
-      <div class="comp-score">
-        <p id="score"></p>
-        <p>Computer</p>
-      </div>
-      <div class="disp-comp-choice">
 
+      <div class="score-board">
+        <div class="user-score">
+          <p id="score"></p>
+          <p>You</p>
+        </div>
+        <div class="comp-score">
+          <p id="score"></p>
+          <p>Computer</p>
+        </div>
+        <div class="disp-comp-choice">
           <div class="comp-choice">
-            <img src="" alt="">
+            <img src="" alt="" />
           </div>
           <p>Comp Choice</p>
+        </div>
       </div>
-    </div>
 
-    <div class="feedback-container">
+      <div class="feedback-container">
         <p></p>
-    </div>
+      </div>
+    </section>
   </body>
 </html>
