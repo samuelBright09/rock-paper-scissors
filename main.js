@@ -5,14 +5,23 @@ const compScore = document.querySelector(".comp-score > p:first-child");
 const feedbackContainer = document.querySelector(".feedback-container");
 const feedbackMsg = document.querySelector(".feedback-container > p");
 const compChoiceImg = document.querySelector(".comp-choice img");
+const images = document.querySelectorAll("img");
 
 // event listeners
 choicesContainer.addEventListener("click", handleUserChoice);
 
 // initialize
 compChoiceImg.src = "./assets/images/init-image.png";
-userScore.textContent = 0
-compScore.textContent = 0
+images.forEach((img) => {
+  img.classList.add("roll-in");
+  setTimeout(() => {
+    img.classList.remove("roll-in");
+  }, 2000);
+});
+
+userScore.textContent = 0;
+compScore.textContent = 0;
+reset();
 
 function generateCompChoice() {
   const options = ["rock", "paper", "scissors"];
@@ -21,7 +30,18 @@ function generateCompChoice() {
 }
 
 function showCompChoice(compChoice) {
+  compChoiceImg.classList.add("rotate");
   compChoiceImg.src = `./assets/images/${compChoice}.png`;
+  setTimeout(() => {
+    compChoiceImg.classList.remove("rotate");
+  }, 500);
+}
+
+function reset() {
+  feedbackContainer.classList.add("pulse");
+  compChoiceImg.src = "./assets/images/init-image.png";
+  feedbackMsg.textContent = "Make a move👆";
+  feedbackContainer.style.backgroundColor = `var(--black)`;
 }
 
 // scores
@@ -30,13 +50,14 @@ let cpuScore = 0;
 
 function showWinner(userChoice, compChoice, userWin) {
   if (userWin) {
-    yourScore++
-    userScore.textContent = yourScore
+    yourScore++;
+    userScore.textContent = yourScore;
     feedbackMsg.textContent = `You won!😄 Your ${userChoice} beats ${compChoice}`;
     feedbackContainer.style.backgroundColor = "#66f542";
   } else {
-    cpuScore++
-    compScore.textContent = cpuScore
+    cpuScore++;
+
+    compScore.textContent = cpuScore;
     const capCompChoiceFrstLetter = compChoice.replace(
       compChoice.charAt(0),
       compChoice.charAt(0).toUpperCase()
@@ -45,6 +66,7 @@ function showWinner(userChoice, compChoice, userWin) {
     feedbackMsg.textContent = `You lost😫. ${capCompChoiceFrstLetter} beats your ${userChoice}`;
     feedbackContainer.style.backgroundColor = "#ff4747";
   }
+  feedbackContainer.classList.remove("pulse");
 }
 
 function playGame(userChoice) {
@@ -54,6 +76,7 @@ function playGame(userChoice) {
   showCompChoice(compChoice);
   //   win criteria
   if (userChoice === compChoice) {
+    feedbackContainer.classList.remove("pulse");
     feedbackMsg.textContent = "Draw🤝. Play again";
     feedbackContainer.style.backgroundColor = `var(--black)`;
   } else {
@@ -69,6 +92,11 @@ function playGame(userChoice) {
       userWin = compChoice === "rock" ? false : true;
     }
     showWinner(userChoice, compChoice, userWin);
+    choicesContainer.removeEventListener("click", handleUserChoice);
+    setTimeout(() => {
+      reset();
+      choicesContainer.addEventListener("click", handleUserChoice);
+    }, 3000);
   }
 }
 
