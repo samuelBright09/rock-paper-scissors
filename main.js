@@ -72,7 +72,7 @@ function showWinner(userChoice, compChoice, userWin) {
     userScore.textContent = yourScore;
     winSound.play();
     feedbackMsg.textContent = `You won!😄 Your ${userChoice} beats ${compChoice}`;
-    feedbackContainer.style.backgroundColor = "#66f542";
+    feedbackContainer.style.backgroundColor = "#239b56";
   } else {
     cpuScore++;
     compScore.textContent = cpuScore;
